@@ -9,6 +9,10 @@ This mod addresses that, by changing TakeAll behavior for both tombstones and ot
 This should address most failures to retrieve all items from tombstone, and also fixes the rare edge case of failure to stack when selecting "Take All" on a chest or other container.
 
 ## Details
+Default take all behavior: prefers keeping the item's x/y position over stacking. Notice it could have stacked the arrows and taken the blueberries, but it puts the arrows in the empty slot. This is rare for containers Because the item's position in the contianer has to line up with an empty slot in your inventory.
+
+![Vanilla-Take-All](https://github.com/user-attachments/assets/77dc7690-3d3e-4227-86c8-26f18befb216)
+
 When you interact with a tombstone,
 1. The system checks if it thinks the tomstone inventory will fit into the player's inventory
 2. If yes, it performs `TakeAll`, which calls `MoveAll`, which moves items from source container (tomsbtone) to destination container (player's inventory)
