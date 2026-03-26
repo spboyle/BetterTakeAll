@@ -14,17 +14,14 @@ namespace BetterTakeAll
         private const string pluginName = "Better Take All";
         private const string pluginVersion = "0.1.0";
 
-        // Necessary? would call `HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly));` in Awake()
-        // private readonly Harmony HarmonyInstance = new Harmony(pluginGUID);
         public static ManualLogSource logger = BepInEx.Logging.Logger.CreateLogSource(pluginName);
 
         public void Awake()
         {
-            BetterTakeAllPlugin.logger.LogInfo("Hello from BetterTakeAll");
-
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
         }
 
+        // MoveAll from source with just one change to calling a different AddItem method
         [HarmonyPatch(typeof(Inventory), "MoveAll")]
         public static class MoveAll_Patch
         {
@@ -34,6 +31,9 @@ namespace BetterTakeAll
                 List<ItemDrop.ItemData> list2 = new List<ItemDrop.ItemData>();
                 foreach (ItemDrop.ItemData itemData in list)
                 {
+                    // Original code calls AddItem(itemData, itemData.m_stack, itemData.m_gridPos.x, itemData.m_gridPos.y)
+                    // We don't want to do that because that method prefers grid location over stackable inventory
+                    // Calling the overloaded AddItem that takes a vector prefers stacking first
                     if (__instance.AddItem(itemData, new Vector2i(itemData.m_gridPos.x, itemData.m_gridPos.y)))
                     {
                         fromInventory.RemoveItem(itemData);
