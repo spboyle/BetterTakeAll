@@ -27,3 +27,7 @@ This mod doesn't address the `Tombstone.EasyFitInventory` method, which checks i
 These two mods and my own all compete over `Inventory.MoveAll`, so they're not compatible. If installed together, these mods take precedence over my own.
 * [Simple Smarter Corpse Run And Tombstone](https://thunderstore.io/c/valheim/p/Goldenrevolver/Simple_Smarter_Corpse_Run_And_Tombstone/) - intelligently predicts your carrying capacity instead of giving you a flat 150 extra, to avoid being overburdened after Corpse Run buff ends
 * [TombstoneDriveBy](https://thunderstore.io/c/valheim/p/sephalon/TombstoneDriveBy/) - Never open up tombstone like a regular container, just auto-take stuff in a hardcoded priority order
+
+
+## Credits
+In addition to the modders mentioned above, credits to Azumatt for providing lots of code that facilitates modding Valheim.
